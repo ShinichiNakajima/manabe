@@ -1,0 +1,55 @@
+<% def timefmt (s) %>
+  <% if s > 3600 %>
+    <% return (s / 3600).to_i.to_s + ":" + zfill((s % 3600 / 60).to_i) + ":" +  zfill((s % 60).to_i) %>
+  <% else %>
+    <% return (s / 60).to_i.to_s + ":" +  zfill((s % 60).to_i) %>
+  <% end %>
+<% end %>
+
+<% def zfill (s) %>
+  <% if s < 10 %>
+    <% return "0" + s.to_s %>
+  <% else %>
+    <% return s.to_s %>
+  <% end %>
+<% end %>
+
+<% def to_id (s)%>
+  <% s = timefmt(s) %>
+  <% s = s.gsub(":", "_") %>
+  <% return "t" + s%>
+<% end %>
+
+<script>
+</script>
+
+<div class="komento">
+  <div class="comment_ue" id="comment_ue">
+    <% if Bookmark.find(params[:bookmark_id]).comments %>
+        <% i = 0 %>
+        <% Bookmark.find(params[:bookmark_id]).comments.order("sec ASC").each do |comment| %>
+          <div class="timesentence">
+            <div class='hhmm' id='<%= to_id(comment[:sec]) + "(#{i})" %>'>
+              <%= timefmt(comment[:sec]) %>
+            </div>
+            &nbsp;->&nbsp; 
+            <div id='<%= to_id(comment[:sec]) + "(#{i})" %>_sentence'>
+              <%= h comment[:sentence] %>
+            </div>
+          </div>
+          <% i += 1 %>
+        <% end %>
+    <% else %>
+      <%= "" %>
+    <% end %>
+  </div>
+
+  <div class="comment_sita">
+    <%= form_with model: @comment, id: "comment_form" do |f| %>
+      <%= f.hidden_field :sec %>
+      <%= f.hidden_field :bookmark_id, value: @bookmark_id %>
+      <%= f.text_field :sentence, placeholder:"comment", id: "sentence", class: "sentence" %>
+      <%= f.submit "send", id: "sendbutton", class: "button" %>
+    <% end %>
+  </div>
+</div>

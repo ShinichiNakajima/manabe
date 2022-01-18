@@ -1,0 +1,15 @@
+<%= render "shared/header" %>
+
+
+<h1>Bookmark List</h1>
+<% if @user.bookmarks %>
+  <ul>
+    <% @user.bookmarks.each do |bookmark| %>
+      <li>
+      <%= link_to bookmark.title, bookmark_path(bookmark.id) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <%= "empty" %>
+<% end %>

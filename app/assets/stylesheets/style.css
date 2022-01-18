@@ -1,0 +1,117 @@
+.zenbu {
+}
+
+.atama {
+  height: 50px;
+  width: calc(100vw - 10px);
+  display: flex;
+  justify-content: space-between;
+  border-top: solid;
+  border-bottom: solid;
+}
+
+.hidari {
+  height: 50px;
+  padding: 0px 10px;
+  background-color: cyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.migis {
+  height: 50px;
+  display: flex;
+}
+
+.migi {
+  padding: 0px 10px;
+  margin: 0px 10px;
+  background-color: cyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rogo {
+  font-size: 40px;
+  margin: 20px;
+  font-style: italic;
+}
+
+.karada {
+  height: calc(100vh - 100px);
+  width: calc(100vw - 10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+}
+
+.uraru {
+  height: 50px;
+  width: 500px;
+  font-size: large
+}
+
+.button {
+  height: 53px;
+  width: 100px;
+  font-size: large;
+  background-color: cyan;
+  border: solid 1px;
+}
+
+.showtime {
+  display: flex;
+  height: calc(100vh - 50px);
+}
+
+.leftshow {
+  margin: 20px;
+  width: 60vw;
+}
+
+.rightshow {
+  margin: 20px;
+  width: 40vw;
+  height: 90vh;
+}
+
+.honhe {
+  height: 600px;
+  width: 40vw;
+  background-color: pink;
+}
+
+.komento {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.sentence {
+  height: 50px;
+  width: 400px;
+  font-size: large
+}
+
+.comment_ue {
+  height: 80vh;
+}
+
+.timesentence {
+  display: flex;
+}
+
+.hhmm {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+
+.comment_sita {
+}

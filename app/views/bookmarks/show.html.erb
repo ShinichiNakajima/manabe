@@ -1,0 +1,125 @@
+<%= render "/shared/header" %>
+
+<script>
+String.prototype.replaceAll = function (a, b) {
+  return this.split(a).join(b);
+};
+
+// 2. This code loads the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // 3. This function creates an <iframe> (and YouTube player)
+  //    after the API code downloads.
+  var player;
+  function onYouTubeIframeAPIReady() {
+    halfScreenHeight = window.screen.height / 2;
+    halfScreenWidth = window.screen.width / 2;
+    player = new YT.Player('player', {
+      height: (halfScreenHeight < 360 ? 360 : halfScreenHeight),
+      width: (halfScreenWidth < 640 ? 640 : halfScreenWidth),
+      <% my_url = Bookmark.find(params[:id]).url %>
+      videoId: '<%= my_url %>',
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+function intoSec (times) {
+  if (times.indexOf(" ") != -1) {
+    times = times.split(" ")[0];
+  };
+  times = times.split(":"), ret = 0
+  if (times.length == 2) {
+    return parseInt(times[0]) * 60 + parseInt(times[1]);
+  } else {
+    return parseInt(times[0]) * 3600 + parseInt(times[1]) * 60 + parseInt(times[2]);
+  }
+}
+
+  // 4. The API will call this function when the video player is ready.
+  function onPlayerReady(event) {
+    event.target.playVideo();
+  }
+
+  // 5. The API calls this function when the player's state changes.
+  //    The function indicates that when playing a video (state=1),
+  //    the player should play for six seconds and then stop.
+  function onPlayerStateChange(event) {
+  }
+
+
+window.addEventListener('load', () => {
+  // submit
+  const honhe = document.getElementById("honhe").contentWindow;
+  var hhmms = [], tmp = honhe.document.getElementsByTagName("div");
+  for (var i = 0; i < tmp.length; i++) {
+    if (tmp[i].className == "hhmm") {
+      hhmms.push(tmp[i])
+    };
+  };
+  for (var i = 0; i < hhmms.length; i++) {
+    (function(i){
+      var theid = hhmms[i].id;
+      var hm = intoSec(hhmms[i].innerText);
+      hhmms[i].addEventListener("click", () => {
+        player.seekTo(hm)
+      })
+    })(i);
+  }
+
+
+
+  const submit = honhe.document.getElementById("sendbutton");
+  submit.addEventListener("click", (e) => {
+    e.preventDefault();
+    const sentence = honhe.document.getElementById("sentence")
+    if (sentence.value != '') {
+      const sec = honhe.document.getElementById("sec");
+      sec.value = player.getCurrentTime();
+      const a = honhe.document.getElementById("comment_ue");
+      const escaped_sentence = sentence.value.replaceAll("<", "＜").replaceAll(">", "＞")
+
+      timeid = "t" + timefmt(sec.value).replaceAll(":", "_");
+      divs = `<div class='timesentence'><div class='hhmm' id='${timeid}'>${timefmt(sec.value)}</div>&nbsp;->&nbsp;<div id='${timeid}_sentence'>${escaped_sentence}</div></div>`;
+      a.insertAdjacentHTML("beforeend", divs);
+
+      honhe.document.getElementById("comment_form").submit();
+
+      sentence.value = "";
+    };
+  });
+});
+
+function timefmt (s) {
+  s = parseInt(s);
+  if (s > 3600){
+    return parseInt(s / 3600) + ":" + zfill(parseInt(s % 3600 / 60)) + ":" + zfill(parseInt(s % 60))
+  } else {
+    return parseInt(s / 60) + ":" + zfill(parseInt(s % 60))
+  }
+}
+
+function zfill (n) {
+  if (n < 10) {
+    return "0" + String(n);
+  } else {
+    return String(n);
+  }
+}
+</script>
+
+
+<div class="showtime">
+  <div class="leftshow">
+    <div id="player"></div>
+  </div>
+  <div class="rightshow" id="rightshow">
+    <iframe id="honhe" class="honhe" src=<%=bookmark_comments_path(@bookmark_id)%>>
+  </div>
+</div>

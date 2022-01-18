@@ -1,24 +1,7 @@
-# README
+TODO
+- 各種エラーメッセージをrender
+- everenote連携（メールアドレス登録ページを用意する）
+- 視聴ページで新規投稿コメントのタイムスタンプを実装
+- トップページにYoutubeのトップページを表示、URL入力フォームは上に
+- サインアップ、サインイン画面のデザイン
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

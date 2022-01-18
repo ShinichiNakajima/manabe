@@ -1,0 +1,15 @@
+<div class="atama">
+  <div class="hidari">
+    <div class="rogo">
+      <%= link_to "Manabe", root_path %>
+    </div>
+  </div>
+  <div class="migis">
+    <div class="migi">
+      <%= link_to current_user.nickname, user_path(current_user.id) %>
+    </div>
+    <div class="migi">
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+    </div>
+  </div>
+</div>
