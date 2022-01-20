@@ -13,7 +13,7 @@ class BookmarksController < ApplicationController
       title = get_title(url)
       @bookmark = Bookmark.new(bookmark_params(title))
       Bookmark.all.each do |bookmark|
-        if bookmark[:url] == @bookmark.url
+        if bookmark[:url] == @bookmark.url && bookmark.user.id == current_user.id
           redirect_to root_path
           return
         end
@@ -25,7 +25,11 @@ class BookmarksController < ApplicationController
 
   def show
     @bookmark_id = params[:id]
-    @comment = Comment.new
+    if Bookmark.find(@bookmark_id).user.id != current_user.id
+      redirect_to root_path
+    else
+      @comment = Comment.new
+    end
   end
 
   private
