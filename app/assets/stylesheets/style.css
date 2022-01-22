@@ -84,7 +84,6 @@
 .honhe {
   height: 600px;
   width: 40vw;
-  background-color: pink;
 }
 
 .komento {
@@ -100,7 +99,9 @@
 }
 
 .comment_ue {
+  background-color: pink;
   height: 80vh;
+  overflow-y: scroll;
 }
 
 .timesentence {
@@ -114,4 +115,9 @@
 }
 
 .comment_sita {
+}
+
+.login {
+  display: flex;
+  justify-content: center;
 }

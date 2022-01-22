@@ -1,34 +1,36 @@
-<h2>Sign up</h2>
+<div class="login" id="login">
+<div>
+  <h2>ユーザー登録</h2>
 
-<%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "uraru" %>
+    </div>
+
+    <div class='field'>
+      <%= f.label :nickname %><br />
+      <%= f.text_field :nickname, placeholder:"", maxlength:"20", class: "uraru" %>
+    </div>
+
+
+
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "uraru" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "uraru" %>
+    </div>
+    <br>
+    <div class="actions">
+      <%= f.submit "Sign up", class: "button" %>
+    </div>
+  <% end %>
   </div>
-
-  <div class='field'>
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, placeholder:"例) furima太郎", maxlength:"20" %>
-  </div>
-
-
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

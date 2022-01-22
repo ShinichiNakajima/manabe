@@ -1,12 +1,14 @@
 <%= render "shared/header" %>
 
 
-<h1>Bookmark List</h1>
+<h1>ブックマークリスト</h1>
 <% if @user.bookmarks %>
   <ul>
     <% @user.bookmarks.each do |bookmark| %>
       <li>
       <%= link_to bookmark.title, bookmark_path(bookmark.id) %>
+      <br>
+      (作成日時：<%= l bookmark.created_at %>)
       </li>
     <% end %>
   </ul>

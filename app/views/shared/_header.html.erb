@@ -6,7 +6,10 @@
   </div>
   <div class="migis">
     <div class="migi">
-      <%= link_to current_user.nickname, user_path(current_user.id) %>
+      <%= link_to current_user.nickname + "のブックマーク", user_path(current_user.id) %>
+    </div>
+    <div class="migi">
+      <%= link_to "Youtube(別窓)", "https://www.youtube.com/", target: :_blank, rel: "noopener noreferrer" %><br>
     </div>
     <div class="migi">
       <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>

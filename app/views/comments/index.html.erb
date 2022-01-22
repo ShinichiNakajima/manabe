@@ -25,14 +25,14 @@
 
 <div class="komento">
   <div class="comment_ue" id="comment_ue">
-    <% if Bookmark.find(params[:bookmark_id]).comments %>
+    <% if Bookmark.find(params[:bookmark_id]).comments.length == 0 %>
         <% i = 0 %>
         <% Bookmark.find(params[:bookmark_id]).comments.order("sec ASC").each do |comment| %>
           <div class="timesentence">
             <div class='hhmm' id='<%= to_id(comment[:sec]) + "(#{i})" %>'>
               <%= timefmt(comment[:sec]) %>
             </div>
-            &nbsp;->&nbsp; 
+            &nbsp;
             <div id='<%= to_id(comment[:sec]) + "(#{i})" %>_sentence'>
               <%= h comment[:sentence] %>
             </div>
@@ -40,16 +40,16 @@
           <% i += 1 %>
         <% end %>
     <% else %>
-      <%= "" %>
+      <%= "コメントを投稿してください" %>
     <% end %>
   </div>
-
+  <hr>
   <div class="comment_sita">
     <%= form_with model: @comment, id: "comment_form" do |f| %>
       <%= f.hidden_field :sec %>
       <%= f.hidden_field :bookmark_id, value: @bookmark_id %>
-      <%= f.text_field :sentence, placeholder:"comment", id: "sentence", class: "sentence" %>
-      <%= f.submit "send", id: "sendbutton", class: "button" %>
+      <%= f.text_field :sentence, placeholder:"コメント", id: "sentence", class: "sentence" %>
+      <%= f.submit "送信", id: "sendbutton", class: "button" %>
     <% end %>
   </div>
 </div>
