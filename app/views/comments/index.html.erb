@@ -25,7 +25,7 @@
 
 <div class="komento">
   <div class="comment_ue" id="comment_ue">
-    <% if Bookmark.find(params[:bookmark_id]).comments.length == 0 %>
+    <% if Bookmark.find(params[:bookmark_id]).comments.length != 0 %>
         <% i = 0 %>
         <% Bookmark.find(params[:bookmark_id]).comments.order("sec ASC").each do |comment| %>
           <div class="timesentence">
@@ -40,7 +40,7 @@
           <% i += 1 %>
         <% end %>
     <% else %>
-      <%= "コメントを投稿してください" %>
+      <%= "コメント" + Bookmark.find(params[:bookmark_id]).comments.length.to_s + "件、コメントを投稿してください" %>
     <% end %>
   </div>
   <hr>
