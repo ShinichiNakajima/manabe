@@ -54,7 +54,7 @@
 
 .uraru {
   height: 50px;
-  width: 500px;
+  width: 50vw;
   font-size: large
 }
 
@@ -91,6 +91,42 @@
   height: 600px;
   width: 40vw;
 }
+.komento {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.sentence {
+  height: 50px;
+  width: calc(100% - 120px);
+  font-size: large
+}
+
+.comment_ue {
+  height: 80vh;
+  background-color: pink;
+  overflow-y: scroll;
+}
+
+.timesentence {
+  display: flex;
+}
+
+.hhmm {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+
+.comment_sita {
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+}
+
 
 @media (max-width: 1100px){
   .atama {
@@ -113,8 +149,12 @@
   .commentfield {
     width: 100vw;
     margin-left: 0px;
+    margin-right: 0px;
   }  
   .honhe {
+    margin: 0px;
+    padding: 0px;
+    height: 40vh;
     width: 90vw;
   }
   .migis {
@@ -127,40 +167,9 @@
     padding: 0px 5px;
     margin: 0px 5px;  
   }
-}
-
-.komento {
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-}
-
-.sentence {
-  height: 50px;
-  width: calc(100% - 120px);
-  font-size: large
-}
-
-.comment_ue {
-  background-color: pink;
-  height: 80vh;
-  overflow-y: scroll;
-}
-
-.timesentence {
-  display: flex;
-}
-
-.hhmm {
-  text-decoration: underline;
-  color: blue;
-  cursor: pointer;
-}
-
-.comment_sita {
-}
-
-.login {
-  display: flex;
-  justify-content: center;
+  .comment_ue {
+    height: 75vh;
+    padding: 0px;
+    margin-bottom: 3px;
+  }  
 }

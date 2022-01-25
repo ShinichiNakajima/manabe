@@ -43,7 +43,6 @@
       <%= "コメント" + Bookmark.find(params[:bookmark_id]).comments.length.to_s + "件、コメントを投稿してください" %>
     <% end %>
   </div>
-  <hr>
   <div class="comment_sita">
     <%= form_with model: @comment, id: "comment_form" do |f| %>
       <%= f.hidden_field :sec %>
