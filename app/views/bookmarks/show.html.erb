@@ -16,13 +16,15 @@ String.prototype.replaceAll = function (a, b) {
   //    after the API code downloads.
   var player;
   function onYouTubeIframeAPIReady() {
-    halfScreenHeight = window.screen.height / 2;
-    halfScreenWidth = window.screen.width / 2;
+    screenHeight = window.screen.height;
+    screenWidth = window.screen.width;
+    maybePC = screenHeight < screenWidth;
     player = new YT.Player('player', {
-      height: (halfScreenHeight < 360 ? 360 : halfScreenHeight),
-      width: (halfScreenWidth < 640 ? 640 : halfScreenWidth),
-      <% my_url = Bookmark.find(params[:id]).url %>
-      videoId: '<%= my_url %>',
+      //height: (halfScreenHeight < 360 ? 360 : halfScreenHeight),
+      //width: (halfScreenWidth < 640 ? 640 : halfScreenWidth),
+      height: (maybePC ? 360 : screenWidth / 16 * 9),
+      width: (maybePC ? 640 : screenWidth),
+      videoId: '<%= Bookmark.find(params[:id]).url %>',
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange
@@ -116,11 +118,11 @@ function zfill (n) {
 
 
 <div class="showtime">
-  <div class="leftshow">
+  <div class="moviefield">
     <div id="player"></div>
-    <h6>動画プレイヤーが表示されないときはページをリロードしてください</h6>
+    <div class="reloadplz">動画プレイヤーが表示されないときはページをリロードしてください</div>
   </div>
-  <div class="rightshow" id="rightshow">
+  <div class="commentfield" id="commentfield">
     <iframe id="honhe" class="honhe" src=<%=bookmark_comments_path(@bookmark_id)%>>
   </div>
 </div>
