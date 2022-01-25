@@ -5,14 +5,13 @@
     </div>
   </div>
   <div class="migis">
-    <div class="migi">
-      <%= link_to current_user.nickname + "のブックマーク", user_path(current_user.id) %>
-    </div>
-    <div class="migi">
-      <%= link_to "Youtube(別窓)", "https://www.youtube.com/", target: :_blank, rel: "noopener noreferrer" %><br>
-    </div>
-    <div class="migi">
-      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-    </div>
+    <% if user_signed_in? %>
+      <%= link_to current_user.nickname + "のブックマーク", user_path(current_user.id), class: "migi" %>
+      <%= link_to "Youtube(別窓)", "https://www.youtube.com/", target: :_blank, rel: "noopener noreferrer", class: "migi" %><br>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "migi" %>
+    <% else %>
+      <%= link_to "ログイン", new_user_session_path, class: "migi" %>
+      <%= link_to "新規登録", new_user_registration_path, class: "migi" %>
+    <% end %>
   </div>
 </div>

@@ -3,6 +3,8 @@
 
 .atama {
   height: 50px;
+  margin: 0px 0px 10px;
+  padding: 0px;
   width: calc(100vw - 10px);
   display: flex;
   justify-content: space-between;
@@ -11,7 +13,6 @@
 }
 
 .hidari {
-  height: 50px;
   padding: 0px 10px;
   background-color: cyan;
   display: flex;
@@ -20,8 +21,8 @@
 }
 
 .migis {
-  height: 50px;
   display: flex;
+  list-style: none;
 }
 
 .migi {
@@ -67,16 +68,21 @@
 
 .showtime {
   display: flex;
+  flex-direction: row;
   height: calc(100vh - 50px);
 }
 
-.leftshow {
+.reloadplz {
+  font-size:xx-small;
+}
+
+.moviefield {
   margin: 20px;
   width: 60vw;
 }
 
-.rightshow {
-  margin: 20px;
+.commentfield {
+  margin: 0px 20px;
   width: 40vw;
   height: 90vh;
 }
@@ -84,6 +90,43 @@
 .honhe {
   height: 600px;
   width: 40vw;
+}
+
+@media (max-width: 1100px){
+  .atama {
+    height: 20px;
+  }
+  .hidari {
+    height: 20px;
+  }
+  .rogo {
+    font-size: 20px;
+    margin: 10px;
+  }
+  .showtime {
+    display: flex;
+    flex-direction: column;
+  }
+  .moviefield {
+    margin: 0px;
+  }
+  .commentfield {
+    width: 100vw;
+    margin-left: 0px;
+  }  
+  .honhe {
+    width: 90vw;
+  }
+  .migis {
+    height: 20px;
+    padding: 0px 20px 10px;
+    margin: 0px;
+  }
+  .migi {
+    font-size: x-small;
+    padding: 0px 5px;
+    margin: 0px 5px;  
+  }
 }
 
 .komento {
@@ -94,7 +137,7 @@
 
 .sentence {
   height: 50px;
-  width: 400px;
+  width: calc(100% - 120px);
   font-size: large
 }
 
