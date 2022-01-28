@@ -109,6 +109,10 @@
   overflow-y: scroll;
 }
 
+.kome {
+  word-break: break-all;
+}
+
 .timesentence {
   display: flex;
 }
@@ -127,6 +131,13 @@
   justify-content: center;
 }
 
+.deletebutton {
+  text-decoration: none;
+  color: red;
+  border: solid 3px;
+  border-color: red;
+  padding: 0px 3px;
+}
 
 @media (max-width: 1100px){
   .atama {

@@ -6,21 +6,25 @@ class BookmarksController < ApplicationController
   end
 
   def create
+    # 空の入力ならトップページへ。
     url = params[:bookmark][:url]
     if url.empty? || url.index("youtube") == nil
       redirect_to root_path
-    else
-      title = get_title(url)
-      @bookmark = Bookmark.new(bookmark_params(title))
-      Bookmark.all.each do |bookmark|
-        if bookmark[:url] == @bookmark.url && bookmark.user.id == current_user.id
-          redirect_to root_path
-          return
-        end
-      end
-      @bookmark.save
-      redirect_to bookmark_path(@bookmark.id)
+      return
     end
+    # 入力されたURLが既にあればそのページへ転送、
+    url_id = extract_id(url)
+    Bookmark.all.each do |bookmark|
+      if bookmark[:url] == url_id && bookmark.user.id == current_user.id
+        redirect_to bookmark_path(bookmark.id)
+        return
+      end
+    end
+    # 新規ならBookmarkテーブルへ登録後動画視聴ページへ。
+    title = get_title(url)
+    @bookmark = Bookmark.new(bookmark_params(title))
+    @bookmark.save
+    redirect_to bookmark_path(@bookmark.id)
   end
 
   def show
@@ -32,6 +36,12 @@ class BookmarksController < ApplicationController
     end
   end
 
+  def destroy
+    bookmark = Bookmark.find(params[:id])
+    bookmark.destroy
+    redirect_to user_path(current_user.id)
+  end
+
   private
 
   def get_title (url)
@@ -41,9 +51,16 @@ class BookmarksController < ApplicationController
   end
 
   def bookmark_params (title)
-    p = params[:bookmark][:url]
-    params[:bookmark][:url] = p.slice((p.index("v=")+2)...p.index("&"))
+    params[:bookmark][:url] = extract_id(params[:bookmark][:url])
     params.require(:bookmark).permit(:url).merge(user_id: current_user.id, title: title)
+  end
+
+  def extract_id (url)
+    if url.index("youtu.be")
+      return url.slice((url.index("be/")+3)...url.length).sub("/", "")
+    else
+      return url.slice((url.index("v=")+2)...url.index("&"))
+    end
   end
 
 end

@@ -3,7 +3,7 @@
   <div class="karada">
     <div class="buttons">
       <%= form_with model: @bookmark, url: bookmarks_path, local: true do |f| %>
-        <%= f.text_field :url, placeholder:"URL: (重複不可）", class: "uraru", autofocus: true %>
+        <%= f.text_field :url, placeholder:"URL: (重複不可）", class: "uraru" %>
         <%= f.submit "GO", class: "button" %>
       <% end %>
     </div>

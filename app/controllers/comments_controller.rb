@@ -6,12 +6,13 @@ class CommentsController < ApplicationController
   end
 
   def create
-    if params[:sec] == ""
-      params[:sec] = 0
-    else
-      params[:sec] = params[:sec].to_i
-    end
+    params[:sec] = params[:sec].to_i
     @comment = Comment.create(sec: params[:sec], sentence: params[:sentence], bookmark_id: params[:bookmark_id])
+  end
+
+  def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
   end
 
   private
@@ -20,3 +21,4 @@ class CommentsController < ApplicationController
     # params.require(:comment).permit(:sec, :sentence, :bookmark_id)
   # end
 end
+

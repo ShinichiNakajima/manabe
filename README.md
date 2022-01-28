@@ -4,9 +4,8 @@
 - 各種エラーメッセージをrender
 - everenote連携（メールアドレス登録ページを用意する）
 - 視聴ページで新規投稿コメントのタイムスタンプを実装
-- トップページにYoutubeのトップページを表示、URL入力フォームは上に
-- ↑ iframeから呼び出すとブロックされる模様
-- サインアップ、サインイン画面のデザイン
+- https://i.ytimg.com/vi/動画のID/hqdefault_live.jpg、でサムネ取得できるっぽい。ただ画像の保存は著作権違反になりそう
+
 
 ## usersテーブル
 | Column             | Type   | Options                   |

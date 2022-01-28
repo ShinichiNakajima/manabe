@@ -20,8 +20,6 @@ String.prototype.replaceAll = function (a, b) {
     screenWidth = window.screen.width;
     maybePC = screenHeight < screenWidth;
     player = new YT.Player('player', {
-      //height: (halfScreenHeight < 360 ? 360 : halfScreenHeight),
-      //width: (halfScreenWidth < 640 ? 640 : halfScreenWidth),
       height: (maybePC ? 360 : screenWidth / 16 * 9),
       width: (maybePC ? 640 : screenWidth),
       videoId: '<%= Bookmark.find(params[:id]).url %>',
@@ -76,7 +74,7 @@ window.addEventListener('load', () => {
   }
 
 
-
+  // コメント投稿フォーム
   const submit = honhe.document.getElementById("sendbutton");
   submit.addEventListener("click", (e) => {
     e.preventDefault();
@@ -88,11 +86,10 @@ window.addEventListener('load', () => {
       const escaped_sentence = sentence.value.replaceAll("<", "＜").replaceAll(">", "＞")
 
       timeid = "t" + timefmt(sec.value).replaceAll(":", "_");
-      divs = `<div class='timesentence'><div class='hhmm' id='${timeid}'>${timefmt(sec.value)}</div>&nbsp;<div id='${timeid}_sentence'>${escaped_sentence}</div></div>`;
+      divs = `<div class='timesentence'><div class='hhmm' id='${timeid}'>${timefmt(sec.value)}</div>&nbsp;<div class='kome' id='${timeid}_sentence'>${escaped_sentence}</div></div>`;
       a.insertAdjacentHTML("beforeend", divs);
 
       honhe.document.getElementById("comment_form").submit();
-
       sentence.value = "";
     };
   });

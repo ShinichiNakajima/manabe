@@ -21,6 +21,14 @@
 <% end %>
 
 <script>
+window.addEventListener('load', () => {
+  const deletebuttons = document.getElementsByClassName("deletebutton");
+  <% Bookmark.find(params[:bookmark_id]).comments.length.times do |i| %>
+    deletebuttons[ <%= i %> ].addEventListener("click", () => {
+      document.getElementsByClassName("timesentence")[ <%= i %> ].outerHTML = "";
+    });
+  <% end %>
+});
 </script>
 
 <div class="komento">
@@ -28,19 +36,20 @@
     <% if Bookmark.find(params[:bookmark_id]).comments.length != 0 %>
         <% i = 0 %>
         <% Bookmark.find(params[:bookmark_id]).comments.order("sec ASC").each do |comment| %>
-          <div class="timesentence">
+          <div class="timesentence" id="timesentence<%= i %>">
             <div class='hhmm' id='<%= to_id(comment[:sec]) + "(#{i})" %>'>
               <%= timefmt(comment[:sec]) %>
             </div>
             &nbsp;
-            <div id='<%= to_id(comment[:sec]) + "(#{i})" %>_sentence'>
+            <div class='kome' id='<%= to_id(comment[:sec]) + "(#{i})" %>_sentence'>
               <%= h comment[:sentence] %>
             </div>
+            <%= link_to "[x]", bookmark_comment_path(params[:bookmark_id], comment.id), method: :delete, data: {confirm: "このコメントを削除しますか？"}, class: "deletebutton", id: "delebtebutton#{i}" %>
           </div>
           <% i += 1 %>
         <% end %>
     <% else %>
-      <%= "コメント" + Bookmark.find(params[:bookmark_id]).comments.length.to_s + "件、コメントを投稿してください" %>
+      <%= "コメントを投稿してください" %>
     <% end %>
   </div>
   <div class="comment_sita">
