@@ -22,7 +22,7 @@
 
 <script>
 window.addEventListener('load', () => {
-  const deletebuttons = document.getElementsByClassName("deletebutton");
+  const deletebuttons = document.getElementsByClassName("deletekome");
   <% Bookmark.find(params[:bookmark_id]).comments.length.times do |i| %>
     deletebuttons[ <%= i %> ].addEventListener("click", () => {
       document.getElementsByClassName("timesentence")[ <%= i %> ].outerHTML = "";
@@ -44,7 +44,7 @@ window.addEventListener('load', () => {
             <div class='kome' id='<%= to_id(comment[:sec]) + "(#{i})" %>_sentence'>
               <%= h comment[:sentence] %>
             </div>
-            <%= link_to "[x]", bookmark_comment_path(params[:bookmark_id], comment.id), method: :delete, data: {confirm: "このコメントを削除しますか？"}, class: "deletebutton", id: "delebtebutton#{i}" %>
+            <%= link_to "x", bookmark_comment_path(params[:bookmark_id], comment.id), method: :delete, data: {confirm: "このコメントを削除しますか？"}, class: "deletekome", id: "delebtebutton#{i}" %>
           </div>
           <% i += 1 %>
         <% end %>

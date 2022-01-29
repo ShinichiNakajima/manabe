@@ -5,11 +5,19 @@
 <% if @user.bookmarks %>
   <ul>
     <% @user.bookmarks.each do |bookmark| %>
-      <li>
-      <%= link_to bookmark.title, bookmark_path(bookmark.id) %>
-      <%= link_to "削除", bookmark_path(bookmark.id), method: :delete, data: {confirm: "このブックマークを削除しますか？"}, class: "deletebutton" %>
-      <br>
-      (作成日時：<%= l bookmark.created_at %>)
+      <li class="bukuma">
+        <div class="samunehidari">
+          <div>
+            <%= link_to "削除", bookmark_path(bookmark.id), method: :delete, data: {confirm: "このブックマークを削除しますか？"}, class: "deletebukuma" %>
+          </div>
+        </div>
+        <div class="samune">
+          <img src="https://i.ytimg.com/vi/<%= bookmark.url %>/hqdefault.jpg" width="100">
+        </div>
+        <div class="bukuma_setumei">
+          <%= link_to bookmark.title, bookmark_path(bookmark.id) %>
+          (作成日時：<%= l bookmark.created_at %>)
+        </div>
       </li>
     <% end %>
   </ul>
