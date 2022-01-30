@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  after_action :touch_bookmark, only: [:create, :destroy]
+
   def index
   end
 
@@ -17,6 +19,9 @@ class CommentsController < ApplicationController
 
   private
 
+  def touch_bookmark
+    Bookmark.find(params[:bookmark_id]).touch
+  end
   # def comment_params
     # params.require(:comment).permit(:sec, :sentence, :bookmark_id)
   # end

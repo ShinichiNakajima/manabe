@@ -1,5 +1,30 @@
 <%= render "shared/header" %>
 
+<% def time_ago (s) %>
+  <% minute_sec = 60 %>
+  <% hour_sec = minute_sec * 60 %>
+  <% day_sec = hour_sec * 24 %>
+  <% week_sec = day_sec * 7 %>
+  <% month_sec = week_sec * 30 %>
+  <% year_sec = day_sec * 365 %>
+  <% now = Time.new %>
+  <% sub = now - s %>
+  <% if sub > year_sec %>
+    <% return (sub / year_sec).to_i.to_s + "年前" %>
+  <% elsif sub > month_sec %>
+    <% return (sub / month_sec).to_i.to_s + "か月前" %>
+  <% elsif sub > week_sec %>
+    <% return (sub / week_sec).to_i.to_s + "週間前" %>
+  <% elsif sub > day_sec %>
+    <% return (sub / day_sec).to_i.to_s + "日前" %>
+  <% elsif sub > hour_sec %>
+    <% return (sub / hour_sec).to_i.to_s + "時間前" %>
+  <% elsif sub > minute_sec %>
+    <% return (sub / minute_sec).to_i.to_s + "分前" %>
+  <% else %>
+    <% return sub.to_i.to_s + "秒前" %>
+  <% end %>
+<% end %>
 
 <h1>ブックマークリスト</h1>
 <% if @user.bookmarks %>
@@ -16,7 +41,10 @@
         </div>
         <div class="bukuma_setumei">
           <%= link_to bookmark.title, bookmark_path(bookmark.id) %>
-          (作成日時：<%= l bookmark.created_at %>)
+            作成:<%= time_ago(bookmark.created_at) %> (<%= l bookmark.created_at %>)
+          <% if bookmark.created_at != bookmark.updated_at %>
+            &nbsp;&nbsp;更新:<%= time_ago(bookmark.updated_at) %> (<%= l bookmark.updated_at %>)
+          <% end %>
         </div>
       </li>
     <% end %>
