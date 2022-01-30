@@ -8,12 +8,19 @@ class BookmarksController < ApplicationController
   def create
     # 空の入力ならトップページへ。
     url = params[:bookmark][:url]
-    if url.empty? || url.index("youtube") == nil
+    if url.empty? || url.index("youtu") == nil
       redirect_to root_path
       return
     end
-    # 入力されたURLが既にあればそのページへ転送、
+
     url_id = extract_id(url)
+
+    # 短縮URLなら通常のURLに変換
+    if url.index("youtu.be")
+      url = "https://www.youtube.com/watch?v=" + url_id
+    end
+
+    # 入力されたURLが既にあればそのページへ転送、
     Bookmark.all.each do |bookmark|
       if bookmark[:url] == url_id && bookmark.user.id == current_user.id
         redirect_to bookmark_path(bookmark.id)
