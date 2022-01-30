@@ -25,7 +25,7 @@ window.addEventListener('load', () => {
   const deletebuttons = document.getElementsByClassName("deletekome");
   <% Bookmark.find(params[:bookmark_id]).comments.length.times do |i| %>
     deletebuttons[ <%= i %> ].addEventListener("click", () => {
-      document.getElementsByClassName("timesentence")[ <%= i %> ].outerHTML = "";
+      document.getElementsByClassName("timesentence")[ <%= i %> ].innerHTML = "";
     });
   <% end %>
 });
@@ -35,7 +35,7 @@ window.addEventListener('load', () => {
   <div class="comment_ue" id="comment_ue">
     <% if Bookmark.find(params[:bookmark_id]).comments.length != 0 %>
         <% i = 0 %>
-        <% Bookmark.find(params[:bookmark_id]).comments.order("sec ASC").each do |comment| %>
+        <% Bookmark.find(params[:bookmark_id]).comments.order("sec ASC").order("created_at ASC").each do |comment| %>
           <div class="timesentence" id="timesentence<%= i %>">
             <div class='hhmm' id='<%= to_id(comment[:sec]) + "(#{i})" %>'>
               <%= timefmt(comment[:sec]) %>
