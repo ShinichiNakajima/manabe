@@ -97,11 +97,7 @@ window.addEventListener('load', () => {
 
 function timefmt (s) {
   s = parseInt(s);
-  if (s > 3600){
-    return parseInt(s / 3600) + ":" + zfill(parseInt(s % 3600 / 60)) + ":" + zfill(parseInt(s % 60))
-  } else {
-    return parseInt(s / 60) + ":" + zfill(parseInt(s % 60))
-  }
+  return parseInt(s / 3600) + ":" + zfill(parseInt(s % 3600 / 60)) + ":" + zfill(parseInt(s % 60))
 }
 
 function zfill (n) {

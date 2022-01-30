@@ -1,9 +1,5 @@
 <% def timefmt (s) %>
-  <% if s > 3600 %>
-    <% return (s / 3600).to_i.to_s + ":" + zfill((s % 3600 / 60).to_i) + ":" +  zfill((s % 60).to_i) %>
-  <% else %>
-    <% return (s / 60).to_i.to_s + ":" +  zfill((s % 60).to_i) %>
-  <% end %>
+  <% return (s / 3600).to_i.to_s + ":" + zfill((s % 3600 / 60).to_i) + ":" +  zfill((s % 60).to_i) %>
 <% end %>
 
 <% def zfill (s) %>
