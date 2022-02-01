@@ -59,7 +59,7 @@ window.addEventListener('load', () => {
   const honhe = document.getElementById("honhe").contentWindow;
 
   // ウィンドウのロードに成功した場合コメント投稿部を表示する＆時限式リロードを停止する
-  honhe.document.getElementById("comment_sita").style.display = "block";
+  honhe.document.getElementById("comment_sita").style.display = "inline";
   clearInterval(ticktack);
 
   // タイムスタンプ部にジャンプ機能を付与

@@ -51,7 +51,7 @@ window.addEventListener('load', () => {
     <% end %>
   </div>
   <div class="comment_sita" id="comment_sita" hidden>
-    <%= form_with model: @comment, id: "comment_form" do |f| %>
+    <%= form_with model: @comment, id: "comment_form", class: "comment_form" do |f| %>
       <%= f.hidden_field :sec %>
       <%= f.hidden_field :bookmark_id, value: @bookmark_id %>
       <%= f.text_field :sentence, placeholder:"コメント", id: "sentence", class: "sentence" %>

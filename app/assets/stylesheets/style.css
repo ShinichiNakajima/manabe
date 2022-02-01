@@ -70,7 +70,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: calc(100vh - 50px);
+  height: calc(80vh);
 }
 
 .reloadplz {
@@ -86,19 +86,23 @@
 .commentfield {
   margin-top: 20px;
   margin-right: 20px;
+  padding: 0px;
   width: 30vw;
-  height: 80vh;
-  background-color: red;
+  height: 100%;
 }
 
 .honhe {
-  height: 600px;
+  height: 100%;
   width: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 .komento {
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+  height: 100%;
+  width: 100%;
 }
 
 .sentence {
@@ -108,10 +112,11 @@
 }
 
 .comment_ue {
-  height: 80vh;
   background-color: pink;
   overflow-y: scroll;
-}
+  height: calc(100vh - 80px);
+  margin-bottom: 5px;
+}  
 
 .kome {
   word-break: break-all;
@@ -128,6 +133,11 @@
 }
 
 .comment_sita {
+  height: calc(100% - 85vh);
+}
+
+.comment_form {
+  width: 100%;
 }
 
 .login {
@@ -244,9 +254,4 @@
     padding: 0px 5px;
     margin: 0px 5px;  
   }
-  .comment_ue {
-    height: 75vh;
-    padding: 0px;
-    margin-bottom: 3px;
-  }  
 }
