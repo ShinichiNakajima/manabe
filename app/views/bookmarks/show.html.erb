@@ -33,8 +33,8 @@ function onYouTubeIframeAPIReady() {
   screenWidth = window.screen.width;
   maybePC = screenHeight < screenWidth;
   player = new YT.Player('player', {
-    height: (maybePC ? 360 : screenWidth / 16 * 9),
-    width: (maybePC ? 640 : screenWidth),
+    height: 360,
+    width: 640,
     videoId: '<%= Bookmark.find(params[:id]).url %>',
     events: {
       'onReady': onPlayerReady,
@@ -45,7 +45,7 @@ function onYouTubeIframeAPIReady() {
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-  event.target.playVideo();
+  player.playVideo();
 }
 
 // 5. The API calls this function when the player's state changes.
@@ -87,12 +87,14 @@ window.addEventListener('load', () => {
     if (sentence.value != '') {
       const sec = honhe.document.getElementById("sec");
       sec.value = player.getCurrentTime();
-      const a = honhe.document.getElementById("comment_ue");
+      const komeran = honhe.document.getElementById("comment_ue");
       const escaped_sentence = sentence.value.replaceAll("<", "＜").replaceAll(">", "＞")
 
       timeid = "t" + timefmt(sec.value).replaceAll(":", "_");
       divs = `<div class='timesentence'><div class='hhmm' id='${timeid}'>${timefmt(sec.value)}</div>&nbsp;<div class='kome' id='${timeid}_sentence'>${escaped_sentence}</div></div>`;
-      a.insertAdjacentHTML("beforeend", divs);
+      komeran.insertAdjacentHTML("beforeend", divs);
+      //最下部にスクロール
+      komeran.scrollTo(0, komeran.scrollHeight)
 
       honhe.document.getElementById("comment_form").submit();
     };
@@ -115,11 +117,9 @@ function zfill (n) {
 
 var cnt = 0, timeLimit = 2;
 var ticktack = setInterval(function(){
-  cnt++
-  if(cnt === timeLimit){
+  if (cnt++ >= timeLimit){
     location.reload();
   }
-  console.log(cnt);    
 }, 1000);
 
 </script>
@@ -127,8 +127,10 @@ var ticktack = setInterval(function(){
 
 <div class="showtime">
   <div class="moviefield">
-    <div id="player"></div>
-    <div class="reloadplz">動画プレイヤーが表示されないときはページをリロードしてください（自動リロード機能試験運用中）</div>
+    <div class="ytmovie">
+      <div id="player"></div>
+    </div>
+    <div class="reloadplz" hidden>動画プレイヤーが表示されないときはページをリロードしてください（自動リロード機能試験運用中）</div>
   </div>
   <div class="commentfield" id="commentfield">
     <iframe frameborder="0" id="honhe" class="honhe" src=<%=bookmark_comments_path(@bookmark_id)%>>

@@ -24,6 +24,8 @@ window.addEventListener('load', () => {
       document.getElementsByClassName("timesentence")[ <%= i %> ].innerHTML = "";
     });
   <% end %>
+  var komeran = document.getElementById("comment_ue");
+  komeran.scrollTo(0, komeran.scrollHeight);
 });
 </script>
 
