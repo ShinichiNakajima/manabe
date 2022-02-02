@@ -115,12 +115,12 @@ function zfill (n) {
   }
 }
 
-var cnt = 0, timeLimit = 2;
+var cnt = 0, timeLimit = 15;
 var ticktack = setInterval(function(){
   if (cnt++ >= timeLimit){
     location.reload();
   }
-}, 1000);
+}, 100);
 
 </script>
 

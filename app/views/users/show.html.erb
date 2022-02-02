@@ -40,11 +40,15 @@
           <img src="https://i.ytimg.com/vi/<%= bookmark.url %>/hqdefault.jpg" width="100">
         </div>
         <div class="bukuma_setumei">
-          <%= link_to bookmark.title, bookmark_path(bookmark.id) %>
-            作成:<%= time_ago(bookmark.created_at) %> (<%= l bookmark.created_at %>)
-          <% if bookmark.created_at != bookmark.updated_at %>
-            &nbsp;&nbsp;更新:<%= time_ago(bookmark.updated_at) %> (<%= l bookmark.updated_at %>)
-          <% end %>
+          <div class="taitoru">
+            <%= link_to bookmark.title, bookmark_path(bookmark.id) %>
+          </div>
+          <div class="sonota">
+            <%= time_ago(bookmark.created_at) %>作成 (<%= l bookmark.created_at %>)
+            <% if bookmark.created_at != bookmark.updated_at %>
+              <br><%= time_ago(bookmark.updated_at) %>更新 (<%= l bookmark.updated_at %>)
+            <% end %>
+          </div>
         </div>
       </li>
     <% end %>

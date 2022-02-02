@@ -173,6 +173,7 @@
 
 .bukuma {
   display: flex;
+  margin-bottom: 5px;
 }
 
 .samune {
@@ -184,6 +185,12 @@
   flex-direction: column;
   justify-content: center;
   word-break: break-all;
+
+}
+.taitoru {
+}
+.sonota {
+  font-size: small;
 }
 
 .ytmovie {
