@@ -35,8 +35,8 @@ class BookmarksController < ApplicationController
   end
 
   def show
-    @bookmark_id = params[:id]
-    if Bookmark.find(@bookmark_id).user.id != current_user.id
+    @bookmark = Bookmark.find(params[:id])
+    if @bookmark.user.id != current_user.id
       redirect_to root_path
     else
       @comment = Comment.new

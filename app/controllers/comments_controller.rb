@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   after_action :touch_bookmark, only: [:create, :destroy]
 
   def index
+    @comments = Bookmark.find(params[:bookmark_id]).comments.order("sec ASC").order("created_at ASC")
   end
 
   def show

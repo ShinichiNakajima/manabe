@@ -35,7 +35,7 @@ function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: 360,
     width: 640,
-    videoId: '<%= Bookmark.find(params[:id]).url %>',
+    videoId: '<%= @bookmark.url %>',
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
@@ -115,12 +115,12 @@ function zfill (n) {
   }
 }
 
-var cnt = 0, timeLimit = 15;
+var cnt = 0, timeLimit = 2;
 var ticktack = setInterval(function(){
   if (cnt++ >= timeLimit){
     location.reload();
   }
-}, 100);
+}, 1000);
 
 </script>
 
@@ -133,6 +133,6 @@ var ticktack = setInterval(function(){
     <div class="reloadplz" hidden>動画プレイヤーが表示されないときはページをリロードしてください（自動リロード機能試験運用中）</div>
   </div>
   <div class="commentfield" id="commentfield">
-    <iframe frameborder="0" id="honhe" class="honhe" src=<%=bookmark_comments_path(@bookmark_id)%>>
+    <iframe frameborder="0" id="honhe" class="honhe" src=<%=bookmark_comments_path(@bookmark.id)%>>
   </div>
 </div>
