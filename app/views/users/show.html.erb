@@ -5,7 +5,7 @@
   <% hour_sec = minute_sec * 60 %>
   <% day_sec = hour_sec * 24 %>
   <% week_sec = day_sec * 7 %>
-  <% month_sec = week_sec * 30 %>
+  <% month_sec = day_sec * 30 %>
   <% year_sec = day_sec * 365 %>
   <% now = Time.new %>
   <% sub = now - s %>
@@ -26,6 +26,30 @@
   <% end %>
 <% end %>
 
+<% def timefmt (s) %>
+  <% return (s / 3600).to_i.to_s + ":" + zfill((s % 3600 / 60).to_i) + ":" +  zfill((s % 60).to_i) %>
+<% end %>
+
+<% def zfill (s) %>
+  <% if s < 10 %>
+    <% return "0" + s.to_s %>
+  <% else %>
+    <% return s.to_s %>
+  <% end %>
+<% end %>
+
+<% def get_comments_list (bookmark_id) %>
+  <% ret = "" %>
+  <% comments = Bookmark.find(bookmark_id).comments %>
+  <% comments.each do |comment| %>
+    <% ret += timefmt(comment.sec) %>
+    <% ret += " " %>
+    <% ret += comment.sentence %>
+    <% ret += " \n" %>
+  <% end %>
+  <% return ret.length == 0 ? "なし" : ret %>
+<% end %>
+
 <h1>ブックマークリスト</h1>
 <% if @user.bookmarks %>
   <ul>
@@ -34,6 +58,9 @@
         <div class="samunehidari">
           <div>
             <%= link_to "×", bookmark_path(bookmark.id), method: :delete, data: {confirm: "このブックマークを削除しますか？"}, class: "deletebukuma" %>
+          </div>
+          <div>
+            <%= link_to "米コピー", "javascript:alert('" + get_comments_list(bookmark.id) + "');", class: "deletebukuma" %>
           </div>
         </div>
         <div class="samune">

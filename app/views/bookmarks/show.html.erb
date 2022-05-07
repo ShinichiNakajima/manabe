@@ -1,3 +1,5 @@
+<script src="https://www.youtube.com/iframe_api"></script>
+
 <%= render "/shared/header" %>
 
 <script>
@@ -45,7 +47,7 @@ function onYouTubeIframeAPIReady() {
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-  player.playVideo();
+  //player.playVideo();
 }
 
 // 5. The API calls this function when the player's state changes.
@@ -128,7 +130,7 @@ var ticktack = setInterval(function(){
 <div class="showtime">
   <div class="moviefield">
     <div class="ytmovie">
-      <div id="player"></div>
+      <div id="player" allow=""></div>
     </div>
     <div class="reloadplz" hidden>動画プレイヤーが表示されないときはページをリロードしてください（自動リロード機能試験運用中）</div>
   </div>
