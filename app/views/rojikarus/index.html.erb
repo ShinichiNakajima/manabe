@@ -1,0 +1,63 @@
+<div id="panels" class="panels"></div>
+
+<script>
+  const panel = '<div class="panel">', line = '<div class="line">', numbers = '<div class="numbers">';
+  const toji = '</div>', nums = "０１２３４５６７８９", panels = document.getElementById("panels");
+  var ret = "";
+  const add = function (s) {
+    ret += s;
+  };
+
+  for (var i = 0; i < 2; i++) {
+    add(panel);
+    add(line);
+    for (var j = 0; j < 10; j++) {
+      add(numbers);
+      add('<div id="num' + i + j + '" class="number">');
+      add(nums[j]);
+      add(toji);
+      add(toji);
+      if (j % 3 == 2) {
+        add(toji);
+        add(line);
+      }
+      if (j == 9) {
+        add('<div class="reset"><div id="resetbutton' + i + '" class="resetbutton">リセット</div></div>')
+      }
+    };
+    add(toji);
+    add(toji);
+  };
+  panels.innerHTML = ret;
+
+
+
+  var kieru = function (){
+    this.style.visibility = "hidden";
+  }
+  var reset0 = function () {
+    if (window.confirm("左のパネルをリセットしますか？")) {
+      for (var i = 0; i < 10; i++) {
+        document.getElementById("num0" + i).style.visibility = "visible";
+      };
+    };
+  };
+  var reset1 = function () {
+    if (window.confirm("右のパネルをリセットしますか？")) {
+      for (var i = 0; i < 10; i++) {
+        document.getElementById("num1" + i).style.visibility = "visible";
+      };
+    };
+  };
+
+  for (var i = 0; i < 2; i++) {
+    for (var j = 0; j < 10; j++) {
+      document.getElementById("num" + i + j).addEventListener('click', kieru)
+    }
+  }
+
+  document.getElementById("resetbutton0").addEventListener('click', reset0);
+  document.getElementById("resetbutton1").addEventListener('click', reset1);
+
+
+</script>
