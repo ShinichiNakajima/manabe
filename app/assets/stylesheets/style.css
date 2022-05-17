@@ -262,3 +262,43 @@
     margin: 0px 5px;  
   }
 }
+
+.panels {
+  display: flex;
+  justify-content: space-between;
+}
+
+.panel {
+}
+
+.line {
+  display: flex;
+}
+
+ .numbers {
+  width: 20vh;
+  height: 20vh;
+  border: solid;
+  background-color: pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number {
+  font-size: 18vh;
+}
+
+.reset {
+  width: 40vh;
+  height: 20vh;
+  border: solid;
+  background-color: cyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resetbutton {
+  font-size: 10vh;
+}
